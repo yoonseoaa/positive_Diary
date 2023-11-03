@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+<!-- 어떤 DAO에서 사용하는지를 적어준다.  -->
+<mapper namespace="kr.smhrd.model.MemberDAO">
+	
+	<insert 
+	id="join"
+	parameterType="MemberVO">
+		insert into member
+		values(#{m_id}, #{m_pw}, #{b_date}, #{tel}, #{c_nick}, null, 0, 0)
+	</insert>
+	
+	<select 
+	id="login"
+	parameterType="MemberVO"
+	resultType="MemberVO">
+		select * from member
+		where m_id = #{m_id}
+		and m_pw = #{m_pw}
+	</select>
+	
+	<update 
+	id="update"
+	parameterType="MemberVO">
+		update member
+		set m_pw = #{m_pw}, b_date = #{b_date}, tel = #{tel}, c_nick = #{c_nick}
+		where m_id = #{m_id}
+	</update>
+	
+	<update 
+	id="exp"
+	parameterType="MemberVO">
+		update member
+		set exp = #{exp} + 100
+		where m_id = #{m_id}
+	</update>
+	
+	<select 
+	id="emailCheck"
+	resultType="MemberVO">
+		select * from member
+		where m_id = #{m_id}
+	</select>
+	
+	
+	
+	
+</mapper>
+
+
+
+

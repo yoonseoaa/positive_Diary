@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+<!-- 어떤 DAO에서 사용하는지를 적어준다.  -->
+<mapper namespace="kr.smhrd.model.DiaryDAO">
+	
+	<insert 
+	id="diaryWrite"
+	parameterType="DiaryVO">
+		insert into DIARY
+		values(diary_num_seq.nextval, TO_CHAR(SYSDATE,'YYYY/MM/DD'), #{diary}, null, null, null, 0, 0, 0, 0, #{m_id})
+	</insert>
+	
+	<select 
+ 	id="selectDiary"
+ 	resultType="DiaryVO"
+ 	parameterType="MemberVO">
+ 		select * from diary
+ 		where m_id = #{m_id}
+ 		order by d_id + 0
+ 	</select>
+	
+	<update 
+	id="positive1"
+	parameterType="DiaryVO">
+		update DIARY
+		set positive_s1 = #{positive_s1}
+		where m_id = #{m_id}
+		and d_date = TO_CHAR(SYSDATE,'YYYY/MM/DD')
+	</update>
+	
+	<update 
+	id="positive2"
+	parameterType="DiaryVO">
+		update DIARY
+		set positive_s2 = #{positive_s2}
+		where m_id = #{m_id}
+		and d_date = TO_CHAR(SYSDATE,'YYYY/MM/DD')
+	</update>
+	
+	<update 
+	id="positive3"
+	parameterType="DiaryVO">
+		update DIARY
+		set positive_s3 = #{positive_s3}
+		where m_id = #{m_id}
+		and d_date = TO_CHAR(SYSDATE,'YYYY/MM/DD')
+	</update>
+	
+	<update 
+	id="diary_rate"
+	parameterType="DiaryVO">
+		update DIARY
+		set diary_rate = #{diary_rate}
+		where m_id = #{m_id}
+		and d_date = TO_CHAR(SYSDATE,'YYYY/MM/DD')
+	</update>
+	
+	
+	<update 
+	id="s1_rate"
+	parameterType="DiaryVO">
+		update DIARY
+		set s1_rate = #{s1_rate}
+		where m_id = #{m_id}
+		and d_date = TO_CHAR(SYSDATE,'YYYY/MM/DD')
+	</update>
+	
+	<update 
+	id="s2_rate"
+	parameterType="DiaryVO">
+		update DIARY
+		set s2_rate = #{s2_rate}
+		where m_id = #{m_id}
+		and d_date = TO_CHAR(SYSDATE,'YYYY/MM/DD')
+	</update>
+	
+	<update 
+	id="s3_rate"
+	parameterType="DiaryVO">
+		update DIARY
+		set s3_rate = #{s3_rate}
+		where m_id = #{m_id}
+		and d_date = TO_CHAR(SYSDATE,'YYYY/MM/DD')
+	</update>
+	
+	<select 
+	id="diaryList"
+	parameterType="MemberVO"
+	resultType="DiaryVO">
+		select * from DIARY
+		where m_id = #{m_id}
+		order by d_id+0 desc
+	</select>
+	<select 
+	id="diaryList2"
+	parameterType="MemberVO"
+	resultType="DiaryVO">
+		select * from DIARY
+		where m_id = #{m_id}
+		order by d_id+0
+	</select>
+	
+	<select 
+	id="listOne"
+	resultType="DiaryVO">
+		select * from DIARY
+		where d_id = #{d_id}
+	</select>	
+	
+</mapper>
